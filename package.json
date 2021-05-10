@@ -1,13 +1,17 @@
 {
   "name": "rlss-brackets",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "index.js",
   "repository": "https://github.com/iambalaam/rlss-brackets.git",
   "author": "Guy Balaam <guy.balaam@gmail.com>",
   "license": "MIT",
   "scripts": {
     "test": "echo 'no tests'",
+    "start": "node index.js",
     "build": "echo 'no build'"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
