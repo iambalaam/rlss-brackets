@@ -1,15 +1,18 @@
 {
   "name": "rlss-brackets",
   "private": true,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "index.js",
   "repository": "https://github.com/iambalaam/rlss-brackets.git",
   "author": "Guy Balaam <guy.balaam@gmail.com>",
   "license": "MIT",
   "scripts": {
     "test": "echo 'no tests'",
-    "start": "node index.js",
-    "build": "run-p build:*",
+    "start": "node dist/server/index.js",
+    "clean": "rm -rf dist",
+    "build": "run-s copy:* build:*",
+    "copy:socket.io": "mkdir -p dist/static && cp ./node_modules/socket.io/client-dist/socket.io.js dist/static",
+    "copy:static": "mkdir -p dist/static && cp ./static/* dist/static",
     "build:client": "echo 'no build'",
     "build:server": "tsc"
   },

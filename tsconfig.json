@@ -1,9 +1,9 @@
 {
     "compilerOptions": {
         "strict": true,
-        "outDir": "dist"
+        "outDir": "dist/server"
     },
     "include": [
-        "src/index.ts"
+        "src/server/index.ts"
     ]
 }
