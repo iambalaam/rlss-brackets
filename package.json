@@ -1,0 +1,13 @@
+{
+  "name": "rlss-brackets",
+  "private": true,
+  "version": "0.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/iambalaam/rlss-brackets.git",
+  "author": "Guy Balaam <guy.balaam@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo 'no tests'",
+    "build": "echo 'no build'"
+  }
+}
