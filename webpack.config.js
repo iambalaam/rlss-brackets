@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const SRC_DIR = resolve(__dirname, 'src', 'client');
 const BUILD_DIR = resolve(__dirname, 'dist', 'client');
-const STATIC_DIR = resolve(__dirname, 'dist', 'static');
 
 module.exports = {
     mode: 'production',
@@ -25,6 +24,7 @@ module.exports = {
     },
     plugins: [new HtmlWebpackPlugin({
         title: 'RLSS Brackets',
-        favicon: resolve(STATIC_DIR, 'favicon.ico')
+        publicPath: '/client',
+        favicon: 'static/favicon.ico'
     })]
 };

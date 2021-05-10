@@ -11,8 +11,8 @@
     "start": "node dist/server/index.js",
     "clean": "rm -rf dist",
     "build": "run-s copy:* build:*",
-    "copy:socket.io": "mkdir -p dist/static && cp ./node_modules/socket.io/client-dist/socket.io.js dist/static",
-    "copy:static": "mkdir -p dist/static && cp ./static/* dist/static",
+    "copy:socket.io": "mkdir -p dist/client && cp ./node_modules/socket.io/client-dist/socket.io.js dist/client",
+    "copy:static": "mkdir -p dist/client && cp ./static/* dist/client",
     "build:client": "webpack",
     "build:server": "tsc"
   },
