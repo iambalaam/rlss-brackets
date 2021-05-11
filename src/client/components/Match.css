@@ -1,0 +1,37 @@
+.match {
+    font-family: 'Quantico', sans-serif;
+    font-size: 35px;
+    text-align: center;
+    
+    height: 80px;
+    width: 350px;
+    
+    border: 1px solid grey;
+    border-radius: 6px;
+    overflow: hidden;
+    
+    display: grid;
+    grid-template-rows: 40px 40px;
+    grid-template-columns: 1fr 50px 50px 50px;
+}
+
+.match .name {
+    text-align: left;
+    letter-spacing: -2px;
+    font-size: 30px;
+    grid-column-start: 1;
+}
+
+/* Cell placements */
+.match .a { grid-row-start: 1; }
+.match .b { grid-row-start: 2; }
+.match .score .score1 { grid-column-start: 2;}
+.match .score .score2 { grid-column-start: 3;}
+.match .score .score3 { grid-column-start: 4;}
+
+/* Inside grid */
+.match .a { border-bottom: 1px solid #aaa; }
+.match .score { border-left: 1px solid #aaa; } 
+
+/* .match .score4 { grid-column-start: 5;}
+.match .score5 { grid-column-start: 6;} */
