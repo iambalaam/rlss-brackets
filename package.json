@@ -8,13 +8,13 @@
   "license": "MIT",
   "scripts": {
     "test": "echo 'no tests'",
-    "start": "node dist/server/index.js",
+    "start": "webpack serve --config src/client/webpack.config.js",
     "clean": "rm -rf dist",
     "build": "run-s copy:* build:*",
     "copy:socket.io": "mkdir -p dist/client && cp ./node_modules/socket.io/client-dist/socket.io.js dist/client",
     "copy:static": "mkdir -p dist/client && cp ./static/* dist/client",
-    "build:client": "webpack",
-    "build:server": "tsc"
+    "build:client": "webpack --config src/client/webpack.config.js",
+    "build:server": "tsc -p src/server/tsconfig.json"
   },
   "dependencies": {
     "express": "^4.17.1",
@@ -33,6 +33,7 @@
     "ts-loader": "^9.1.2",
     "typescript": "^4.2.4",
     "webpack": "^5.37.0",
-    "webpack-cli": "^4.7.0"
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2"
   }
 }

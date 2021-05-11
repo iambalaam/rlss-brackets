@@ -1,12 +1,12 @@
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const SRC_DIR = resolve(__dirname, 'src', 'client');
-const BUILD_DIR = resolve(__dirname, 'dist', 'client');
+const CLIENT_SRC_DIR = resolve(__dirname);
+const BUILD_DIR = resolve(__dirname, '../..', 'dist', 'client');
 
 module.exports = {
     mode: 'production',
-    entry: resolve(SRC_DIR, 'index.tsx'),
+    entry: resolve(CLIENT_SRC_DIR, 'index.tsx'),
     output: {
         filename: 'bundle[chunkhash].js',
         path: BUILD_DIR
@@ -18,13 +18,15 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx?$/,
-                loader: 'ts-loader'
+                loader: 'ts-loader',
+                options: {
+                    configFile: resolve(CLIENT_SRC_DIR, 'tsconfig.json')
+                }
             }
         ]
     },
     plugins: [new HtmlWebpackPlugin({
         title: 'RLSS Brackets',
-        publicPath: '/client',
         favicon: 'static/favicon.ico'
     })]
 };

@@ -12,12 +12,10 @@ const io = new Server(server);
 
 // Initialise
 const PORT = process.env.PORT || 3000;
-const STATIC_DIR = resolve(__dirname, '..', '..', 'dist', 'static');
 const CLIENT_DIR = resolve(__dirname, '..', '..', 'dist', 'client');
 
 // Assets
-app.use('/static', express.static(STATIC_DIR));
-app.use('/client', express.static(CLIENT_DIR));
+app.use('/', express.static(CLIENT_DIR));
 
 // HTTP Routes
 app.all('*', (_req, res) => {
