@@ -8,7 +8,8 @@
   "license": "MIT",
   "scripts": {
     "test": "echo 'no tests'",
-    "start": "webpack serve --config src/client/webpack.config.js",
+    "start": "node dist/server/index.js",
+    "start:client": "webpack serve --config src/client/webpack.config.js",
     "clean": "rm -rf dist",
     "build": "run-s copy:* build:*",
     "copy:socket.io": "mkdir -p dist/client && cp ./node_modules/socket.io/client-dist/socket.io.js dist/client",
