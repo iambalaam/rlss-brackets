@@ -17,8 +17,8 @@ export function App() {
                     primaryColor: 'green',
                     secondaryColor: 'yellow'
                 }}
-                aScore={[1, 10, undefined]}
-                bScore={[3, 2, undefined]}
+                aScore={[1, 10, 7]}
+                bScore={[3, 2, 1]}
                 bestOf={3}
                 gameNumber={2}
             />

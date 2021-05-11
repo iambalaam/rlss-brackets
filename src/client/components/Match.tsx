@@ -25,8 +25,26 @@ export function Match(p: MatchProps) {
         <div className="match">
             <span className="name a" style={{ color: p.aTeam.secondaryColor, backgroundColor: p.aTeam.primaryColor }}>{p.aTeam.name}</span>
             <span className="name b" style={{ color: p.bTeam.secondaryColor, backgroundColor: p.bTeam.primaryColor }}>{p.bTeam.name}</span>
-            {p.aScore.map((score, i) => <span className={`score score${i + 1} a`} style={{ color: p.aTeam.secondaryColor, backgroundColor: p.aTeam.primaryColor }}>{score}</span>)}
-            {p.bScore.map((score, i) => <span className={`score score${i + 1} b`} style={{ color: p.bTeam.secondaryColor, backgroundColor: p.bTeam.primaryColor }}>{score}</span>)}
+            {p.aScore.map((aScore, i) => {
+                const bScore = p.bScore[i];
+                if (!aScore || !bScore) {
+                    return <>
+                        <span className={`score score${i + 1} a`} style={{ color: p.aTeam.secondaryColor, backgroundColor: p.aTeam.primaryColor }}></span>
+                        <span className={`score score${i + 1} b`} style={{ color: p.bTeam.secondaryColor, backgroundColor: p.bTeam.primaryColor }}></span>
+                    </>
+                };
+                if (aScore > bScore) {
+                    return <>
+                        <span className={`score score${i + 1} a`} style={{ color: p.aTeam.primaryColor, backgroundColor: p.aTeam.secondaryColor }}>{aScore}</span>
+                        <span className={`score score${i + 1} b`} style={{ color: p.bTeam.secondaryColor, backgroundColor: p.bTeam.primaryColor }}>{bScore}</span>
+                    </>
+                } else {
+                    return <>
+                        <span className={`score score${i + 1} a`} style={{ color: p.aTeam.secondaryColor, backgroundColor: p.aTeam.primaryColor }}>{aScore}</span>
+                        <span className={`score score${i + 1} b`} style={{ color: p.bTeam.primaryColor, backgroundColor: p.bTeam.secondaryColor }}>{bScore}</span>
+                    </>
+                }
+            })}
         </div>
     )
 };

@@ -1,6 +1,7 @@
 .match {
     font-family: 'Quantico', sans-serif;
     font-size: 35px;
+    line-height: 40px;
     text-align: center;
     
     height: 80px;
@@ -17,6 +18,7 @@
 
 .match .name {
     text-align: left;
+    padding-left: 8px;
     letter-spacing: -2px;
     font-size: 30px;
     grid-column-start: 1;

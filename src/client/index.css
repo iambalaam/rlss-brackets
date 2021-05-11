@@ -3,6 +3,10 @@ html, body {
     background-color: #bac4fd;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 main {
     padding: 100px;
 }
