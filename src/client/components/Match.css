@@ -13,7 +13,14 @@
     
     display: grid;
     grid-template-rows: 40px 40px;
+}
+
+.match.bo3 {
     grid-template-columns: 1fr 50px 50px 50px;
+}
+.match.bo5 {
+    width: 450px;
+    grid-template-columns: 1fr 50px 50px 50px 50px 50px;
 }
 
 .match .name {
@@ -30,6 +37,8 @@
 .match .score .score1 { grid-column-start: 2;}
 .match .score .score2 { grid-column-start: 3;}
 .match .score .score3 { grid-column-start: 4;}
+.match .score .score4 { grid-column-start: 5;}
+.match .score .score5 { grid-column-start: 6;}
 
 /* Inside grid */
 .match .a { border-bottom: 1px solid #aaa; }

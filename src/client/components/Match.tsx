@@ -14,34 +14,36 @@ export type MaybeNumber = (undefined | number);
 export interface MatchProps {
     aTeam: Team,
     bTeam: Team,
-    aScore: MaybeNumber[],
-    bScore: MaybeNumber[],
+    aScores: MaybeNumber[],
+    bScores: MaybeNumber[],
     bestOf: number,
     gameNumber: MaybeNumber;
 }
 
-export function Match(p: MatchProps) {
+export function Match(props: MatchProps) {
+    const { aTeam, bTeam, aScores, bScores, bestOf } = props;
     return (
-        <div className="match">
-            <span className="name a" style={{ color: p.aTeam.secondaryColor, backgroundColor: p.aTeam.primaryColor }}>{p.aTeam.name}</span>
-            <span className="name b" style={{ color: p.bTeam.secondaryColor, backgroundColor: p.bTeam.primaryColor }}>{p.bTeam.name}</span>
-            {p.aScore.map((aScore, i) => {
-                const bScore = p.bScore[i];
+        <div className={`match bo${bestOf}`}>
+            <span className="name a" style={{ color: aTeam.secondaryColor, backgroundColor: aTeam.primaryColor }}>{aTeam.name}</span>
+            <span className="name b" style={{ color: bTeam.secondaryColor, backgroundColor: bTeam.primaryColor }}>{bTeam.name}</span>
+            {Array(bestOf).fill(0).map((_, i) => {
+                const aScore = aScores[i];
+                const bScore = bScores[i];
                 if (!aScore || !bScore) {
                     return <>
-                        <span className={`score score${i + 1} a`} style={{ color: p.aTeam.secondaryColor, backgroundColor: p.aTeam.primaryColor }}></span>
-                        <span className={`score score${i + 1} b`} style={{ color: p.bTeam.secondaryColor, backgroundColor: p.bTeam.primaryColor }}></span>
+                        <span className={`score score${i + 1} a`} style={{ color: aTeam.secondaryColor, backgroundColor: aTeam.primaryColor }}>?</span>
+                        <span className={`score score${i + 1} b`} style={{ color: bTeam.secondaryColor, backgroundColor: bTeam.primaryColor }}>?</span>
                     </>
                 };
                 if (aScore > bScore) {
                     return <>
-                        <span className={`score score${i + 1} a`} style={{ color: p.aTeam.primaryColor, backgroundColor: p.aTeam.secondaryColor }}>{aScore}</span>
-                        <span className={`score score${i + 1} b`} style={{ color: p.bTeam.secondaryColor, backgroundColor: p.bTeam.primaryColor }}>{bScore}</span>
+                        <span className={`score score${i + 1} a`} style={{ color: aTeam.primaryColor, backgroundColor: aTeam.secondaryColor }}>{aScore}</span>
+                        <span className={`score score${i + 1} b`} style={{ color: bTeam.secondaryColor, backgroundColor: bTeam.primaryColor }}>{bScore}</span>
                     </>
                 } else {
                     return <>
-                        <span className={`score score${i + 1} a`} style={{ color: p.aTeam.secondaryColor, backgroundColor: p.aTeam.primaryColor }}>{aScore}</span>
-                        <span className={`score score${i + 1} b`} style={{ color: p.bTeam.primaryColor, backgroundColor: p.bTeam.secondaryColor }}>{bScore}</span>
+                        <span className={`score score${i + 1} a`} style={{ color: aTeam.secondaryColor, backgroundColor: aTeam.primaryColor }}>{aScore}</span>
+                        <span className={`score score${i + 1} b`} style={{ color: bTeam.primaryColor, backgroundColor: bTeam.secondaryColor }}>{bScore}</span>
                     </>
                 }
             })}

@@ -1,0 +1,41 @@
+.team{
+    font-family: 'Quantico', sans-serif;
+    font-size: 35px;
+    line-height: 40px;
+    
+    height: 40px;
+    min-width: 600px;
+    padding: 2px;
+    
+    border: 1px solid darkgray;
+    border-radius: 8px;
+}
+
+.team input {
+    font-family: 'Quantico', sans-serif;
+    font-size: 30px;
+    line-height: 40px;
+    color: currentColor;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+.team .github-picker {
+    top: 35px;
+}
+
+.team .primary-colorbox {
+    float: left;
+    height: 24px;
+    width: 24px;
+    margin: 5px;
+    background-color: currentColor;
+}
+.team .secondary-colorbox {
+    float: left;
+    margin: 2px;
+    height: 30px;
+    width: 30px;
+    border: 3px solid currentColor;
+}

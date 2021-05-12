@@ -5,7 +5,7 @@ const CLIENT_SRC_DIR = resolve(__dirname);
 const BUILD_DIR = resolve(__dirname, '../..', 'dist', 'client');
 
 // HTML Template
-const template = ({ htmlWebpackPlugin }) => `
+const template = ({ _htmlWebpackPlugin }) => `
     <html>
       <head>
         <meta charset="utf-8">
@@ -14,11 +14,9 @@ const template = ({ htmlWebpackPlugin }) => `
         <link rel="icon" href="favicon.ico">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Quantico:ital,wght@1,700&display=swap" rel="stylesheet">
-        ${htmlWebpackPlugin.tags.headTags}
       </head>
       <body>
         <div id="root"></div>
-        ${htmlWebpackPlugin.tags.bodyTags}
       </body>
     </html>
   `;
