@@ -33,6 +33,14 @@ module.exports = {
     resolve: {
         extensions: ['.ts', '.tsx', '.js']
     },
+    devServer: {
+        proxy: {
+            '/socket.io': {
+                target: 'http://localhost:3000',
+                secure: false,
+            }
+        }
+    },
     module: {
         rules: [
             {

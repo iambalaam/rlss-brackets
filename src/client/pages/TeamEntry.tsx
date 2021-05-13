@@ -64,8 +64,6 @@ function TeamSetup(props: { team: MaybeTeam, onChange: (team: TeamInfo) => void,
 
     // Window events
     const handleClickOff = () => {
-        console.log('CLOSING');
-
         showPrimaryPicker(false);
         showSecondaryPicker(false);
     }
