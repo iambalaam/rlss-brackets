@@ -35,7 +35,7 @@ interface TeamInfo {
 interface EmptyTeam { };
 type MaybeTeam = TeamInfo | EmptyTeam;
 
-function TeamSetup(props: { team: MaybeTeam, onChange: (team: TeamInfo) => void }) {
+function TeamSetup(props: { team: MaybeTeam, onChange: (team: TeamInfo) => void, deleteTeam: () => void }) {
     const team: TeamInfo = {
         id: -1,
         name: '',
@@ -88,6 +88,7 @@ function TeamSetup(props: { team: MaybeTeam, onChange: (team: TeamInfo) => void 
             <input type="text" className="name" placeholder="team name" onChange={onChange('name')} value={team.name}></input>
             <input type="text" className="player1" placeholder="player 1" onChange={onChange('player1')} value={team.player1}></input>
             <input type="text" className="player2" placeholder="player 2" onChange={onChange('player2')} value={team.player2}></input>
+            <span className="delete" onClick={props.deleteTeam}>❌</span>
         </div>
     )
 }
@@ -104,9 +105,16 @@ export function TeamEntry() {
                     const newTeams = [...teams];
                     newTeams[i] = team;
                     setTeams(newTeams);
+                };
+                const deleteTeam = () => {
+                    const newTeams = [...teams];
+                    newTeams.splice(i, 1);
+                    setTeams(newTeams);
                 }
-                return <TeamSetup team={team} onChange={onChange} />
+                return <TeamSetup team={team} onChange={onChange} deleteTeam={deleteTeam} />
             })}
+
+            <div className="add" onClick={() => { setTeams([...teams, {}]) }}>➕</div>
 
         </div>
     );

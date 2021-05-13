@@ -29,6 +29,7 @@
 }
 
 .team .primary-colorbox {
+    cursor: pointer;
     float: left;
     height: 24px;
     width: 24px;
@@ -36,9 +37,27 @@
     background-color: currentColor;
 }
 .team .secondary-colorbox {
+    cursor: pointer;
     float: left;
     margin: 2px;
     height: 30px;
     width: 30px;
     border: 3px solid currentColor;
+}
+
+.add {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 20px;
+    line-height: 20px;
+    padding: 8px;
+    margin-top: 30px;
+}
+
+.team .delete {
+    float: right;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 20px;
+    padding: 8px;
 }
