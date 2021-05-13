@@ -20,6 +20,9 @@
     border: none;
     padding: 0;
 }
+.team input::placeholder {
+    color: currentColor;
+}
 
 .team .github-picker {
     top: 35px;

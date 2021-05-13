@@ -38,11 +38,11 @@ type MaybeTeam = TeamInfo | EmptyTeam;
 function TeamSetup(props: { team: MaybeTeam, onChange: (team: TeamInfo) => void }) {
     const team: TeamInfo = {
         id: -1,
-        name: 'name',
+        name: '',
         primaryColor: '#E5E5E5',
         secondaryColor: '#BFBFBF',
-        player1: 'p1',
-        player2: 'p2',
+        player1: '',
+        player2: '',
         ...props.team
     }
 
@@ -85,9 +85,9 @@ function TeamSetup(props: { team: MaybeTeam, onChange: (team: TeamInfo) => void 
             <span className="secondary-colorbox" onClick={(e) => { e.preventDefault(); showSecondaryPicker(true); return false; }}>
                 {secondaryPicker && <RocketLeaguePicker onChange={secondaryOnChange} />}
             </span>
-            <input type="text" className="name" onChange={onChange('name')} value={team.name}></input>
-            <input type="text" className="player1" onChange={onChange('player1')} value={team.player1}></input>
-            <input type="text" className="player2" onChange={onChange('player2')} value={team.player2}></input>
+            <input type="text" className="name" placeholder="team name" onChange={onChange('name')} value={team.name}></input>
+            <input type="text" className="player1" placeholder="player 1" onChange={onChange('player1')} value={team.player1}></input>
+            <input type="text" className="player2" placeholder="player 2" onChange={onChange('player2')} value={team.player2}></input>
         </div>
     )
 }
