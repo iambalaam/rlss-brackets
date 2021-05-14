@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { GithubPicker } from 'react-color';
 import { OnChangeHandler } from 'react-color/lib/components/common/ColorWrap';
+import { TeamInfo } from '../../../@types';
 import './TeamEntry.css';
 
 
@@ -24,14 +25,6 @@ function RocketLeaguePicker({ onChange }: { onChange: OnChangeHandler }) {
     )
 }
 
-interface TeamInfo {
-    id: number;
-    name: string;
-    player1: string;
-    player2: string;
-    primaryColor: string;
-    secondaryColor: string;
-}
 interface EmptyTeam { };
 type MaybeTeam = TeamInfo | EmptyTeam;
 

@@ -2,7 +2,14 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "jsx": "react",
-        "outDir": "../../dist/client"
+        "outDir": "../../dist/client",
+        "lib": [
+            "ES2015",
+            "DOM"
+        ],
+        "types": [
+            "../../@types"
+        ]
     },
     "include": [
         "./index.tsx"
