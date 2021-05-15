@@ -1,7 +1,7 @@
 import { Socket } from "socket.io";
 
 export interface TournamentState {
-    teams: TeamInfo
+    teams: TeamInfo[]
 }
 
 export interface TeamInfo {

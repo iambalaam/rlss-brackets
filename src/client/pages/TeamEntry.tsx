@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { GithubPicker } from 'react-color';
 import { OnChangeHandler } from 'react-color/lib/components/common/ColorWrap';
-import { TeamInfo } from '../../../@types';
+import { TeamInfo, TournamentState } from '../../../@types';
 import './TeamEntry.css';
 
 
@@ -84,18 +84,23 @@ function TeamSetup(props: { team: MaybeTeam, onChange: (team: TeamInfo) => void,
     )
 }
 
-export function TeamEntry({ id }: { id: string }) {
-    const [teams, setTeams] = useState<(MaybeTeam)[]>([{}, {}, {}]);
+export function TeamEntry({ id, data }: { id: string, data: TournamentState }) {
+    const [teams, setTeams] = useState<(MaybeTeam)[]>((data && data.teams) || [{}]);
 
     function updateTeams(teams: MaybeTeam[]) {
-        window.socket.emit('tournament-update', teams);
+        window.socket.emit('update-tournament', id, { teams });
         setTeams(teams);
     }
 
+    function teamsHandler(data: { [id: string]: TournamentState }) {
+        if (data[id]) {
+            setTeams(data[id].teams);
+        }
+    }
     useEffect(function setupSocket() {
-        window.socket.on('tournament-update', setTeams)
+        window.socket.on('update-tournament', teamsHandler)
         return function cleanupSocket() {
-            window.socket.off('tournament-update', setTeams);
+            window.socket.off('update-tournament', teamsHandler);
         }
     })
 
