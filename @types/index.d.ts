@@ -1,3 +1,5 @@
+import { Socket } from "socket.io";
+
 export interface TournamentState {
     teams: TeamInfo
 }
@@ -9,4 +11,8 @@ export interface TeamInfo {
     player2: string;
     primaryColor: string;
     secondaryColor: string;
+}
+
+declare global {
+    interface Window { socket: Socket; }
 }

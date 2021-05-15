@@ -26,7 +26,7 @@ function RocketLeaguePicker({ onChange }: { onChange: OnChangeHandler }) {
 }
 
 interface EmptyTeam { };
-type MaybeTeam = TeamInfo | EmptyTeam;
+export type MaybeTeam = TeamInfo | EmptyTeam;
 
 function TeamSetup(props: { team: MaybeTeam, onChange: (team: TeamInfo) => void, deleteTeam: () => void }) {
     const team: TeamInfo = {
@@ -87,6 +87,18 @@ function TeamSetup(props: { team: MaybeTeam, onChange: (team: TeamInfo) => void,
 export function TeamEntry() {
     const [teams, setTeams] = useState<(MaybeTeam)[]>([{}, {}, {}]);
 
+    function updateTeams(teams: MaybeTeam[]) {
+        window.socket.emit('tournament-update', teams);
+        setTeams(teams);
+    }
+
+    useEffect(function setupSocket() {
+        window.socket.on('tournament-update', setTeams)
+        return function cleanupSocket() {
+            window.socket.off('tournament-update', setTeams);
+        }
+    })
+
     return (
         <div>
             <h1>Team Entry</h1>
@@ -95,17 +107,17 @@ export function TeamEntry() {
                 const onChange = (team: TeamInfo) => {
                     const newTeams = [...teams];
                     newTeams[i] = team;
-                    setTeams(newTeams);
+                    updateTeams(newTeams);
                 };
                 const deleteTeam = () => {
                     const newTeams = [...teams];
                     newTeams.splice(i, 1);
-                    setTeams(newTeams);
+                    updateTeams(newTeams);
                 }
                 return <TeamSetup team={team} onChange={onChange} deleteTeam={deleteTeam} />
             })}
 
-            <div className="add" onClick={() => { setTeams([...teams, {}]) }}>➕</div>
+            <div className="add" onClick={() => { updateTeams([...teams, {}]) }}>➕</div>
 
         </div>
     );
