@@ -5,6 +5,7 @@ import { App } from './App';
 import './index.css';
 
 const socket = io();
+(window as any).socket = socket;
 
 const root = document.getElementById('root');
 

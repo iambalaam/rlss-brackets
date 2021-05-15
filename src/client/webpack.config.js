@@ -1,4 +1,5 @@
 const { resolve } = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const CLIENT_SRC_DIR = resolve(__dirname);
@@ -25,15 +26,20 @@ const template = ({ _htmlWebpackPlugin }) => `
 
 module.exports = {
     mode: 'production',
-    entry: resolve(CLIENT_SRC_DIR, 'index.tsx'),
+    entry: [
+        'webpack-hot-middleware/client?reload=true',
+        resolve(CLIENT_SRC_DIR, 'index.tsx')
+    ],
     output: {
         filename: 'bundle[chunkhash].js',
-        path: BUILD_DIR
+        path: BUILD_DIR,
+        publicPath: '/'
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js']
     },
     devServer: {
+        hot: true,
         proxy: {
             '/socket.io': {
                 target: 'http://localhost:3000',
@@ -56,9 +62,12 @@ module.exports = {
             }
         ]
     },
-    plugins: [new HtmlWebpackPlugin({
-        title: 'RLSS Brackets',
-        favicon: 'static/favicon.ico',
-        templateContent: template
-    })]
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: 'RLSS Brackets',
+            favicon: 'static/favicon.ico',
+            templateContent: template
+        }),
+        new webpack.HotModuleReplacementPlugin()
+    ]
 };

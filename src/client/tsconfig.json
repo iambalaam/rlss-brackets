@@ -5,9 +5,10 @@
         "outDir": "../../dist/client",
         "lib": [
             "ES2015",
-            "DOM"
+            "DOM",
         ],
         "types": [
+            "@types/webpack-env",
             "../../@types"
         ]
     },
