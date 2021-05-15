@@ -5,6 +5,8 @@ html, body {
 
 * {
     box-sizing: border-box;
+    font-family: 'Quantico', sans-serif;
+    font-size: 30px;
 }
 
 main {

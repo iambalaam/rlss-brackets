@@ -1,29 +1,20 @@
 import * as React from 'react';
 import { TeamEntry } from './pages/TeamEntry';
-import { Match } from './components/Match'
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 export function App() {
     return (
-        <main>
-            <TeamEntry />
-            {/* <Match
-                aTeam={{
-                    id: 1,
-                    name: 'England',
-                    primaryColor: 'white',
-                    secondaryColor: 'indianred'
-                }}
-                bTeam={{
-                    id: 2,
-                    name: 'Brazil',
-                    primaryColor: 'green',
-                    secondaryColor: 'yellow'
-                }}
-                aScores={[1, 10, 7]}
-                bScores={[3, 2, 1]}
-                bestOf={3}
-                gameNumber={2}
-            /> */}
-        </main>
+        <BrowserRouter>
+            <main>
+                <Switch>
+                    <Route
+                        exact path="/:id/teams/"
+                        render={({ match }) => <TeamEntry id={match.params.id} />}
+                    />
+                    <Route><h1>404</h1></Route>
+
+                </Switch>
+            </main>
+        </BrowserRouter>
     );
 }

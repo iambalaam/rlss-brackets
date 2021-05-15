@@ -84,7 +84,7 @@ function TeamSetup(props: { team: MaybeTeam, onChange: (team: TeamInfo) => void,
     )
 }
 
-export function TeamEntry() {
+export function TeamEntry({ id }: { id: string }) {
     const [teams, setTeams] = useState<(MaybeTeam)[]>([{}, {}, {}]);
 
     function updateTeams(teams: MaybeTeam[]) {
@@ -101,7 +101,7 @@ export function TeamEntry() {
 
     return (
         <div>
-            <h1>Team Entry</h1>
+            <h1>Team Entry: {id}</h1>
 
             {teams.map((team, i) => {
                 const onChange = (team: TeamInfo) => {
