@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { TeamEntry } from './pages/TeamEntry';
+import { Brackets } from './pages/Brackets';
 import { io } from 'socket.io-client';
 import { Route, Switch, useParams } from 'react-router-dom';
 import { TournamentState } from '../../@types';
@@ -35,6 +36,9 @@ export function App() {
                             exact path="/:id/teams/"
                             render={({ match }) => <TeamEntry id={match.params.id} data={data} />}
                         />
+                        <Route exact path="/:id/brackets">
+                            <Brackets data={data} />
+                        </Route>
                         <Route><h1>404</h1></Route>
 
                     </Switch>)

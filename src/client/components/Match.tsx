@@ -14,8 +14,8 @@ export type MaybeNumber = (undefined | number);
 export interface MatchProps {
     aTeam: Team,
     bTeam: Team,
-    aScores: MaybeNumber[],
-    bScores: MaybeNumber[],
+    aScores: number[],
+    bScores: number[],
     bestOf: number,
     gameNumber: number;
 }
