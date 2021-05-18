@@ -6,7 +6,6 @@ const data: { [id: string]: TournamentState } = {};
 
 export function attachSocketRoutes(io: Server) {
     io.on('connection', (socket) => {
-        socket.onAny(console.log);
 
         console.log('a user connected');
         socket.on('disconnect', () => {
@@ -31,7 +30,7 @@ export function attachSocketRoutes(io: Server) {
             }
 
             // Results update
-            socket.broadcast.emit('update-tournament', { [id]: data[id] });
+            socket.broadcast.emit('update-tournament', id, data[id]);
         });
     });
 

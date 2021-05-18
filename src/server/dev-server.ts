@@ -20,7 +20,7 @@ const io = new Server(server);
 
 // Add webpack middleware
 const compiler = webpack(config)
-app.use(webpackDevMiddleware(compiler));
+app.use(webpackDevMiddleware(compiler, { writeToDisk: true }));
 app.use(webpackHotMiddleware(compiler));
 
 // HTTP Routes

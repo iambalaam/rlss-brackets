@@ -92,9 +92,9 @@ export function TeamEntry({ id, data }: { id: string, data: TournamentState }) {
         setTeams(teams);
     }
 
-    function teamsHandler(data: { [id: string]: TournamentState }) {
-        if (data[id]) {
-            setTeams(data[id].teams);
+    function teamsHandler(dataId: string, data: TournamentState) {
+        if (dataId === id) {
+            setTeams(data.teams);
         }
     }
     useEffect(function setupSocket() {

@@ -7,6 +7,7 @@ import { TournamentState } from '../../@types';
 
 export function App() {
     const [isLoading, setLoading] = useState(true);
+    const [data, setData] = useState<TournamentState>({} as TournamentState);
     const { id } = useParams() as { id: string };
     let tournamentData: TournamentState;
     useEffect(function setupSocket() {
@@ -16,13 +17,13 @@ export function App() {
             socket.emit('get-tournament', id);
         });
         socket.on('get-tournament', (data) => {
-            tournamentData = data;
+            setData(data);
             setLoading(false);
         });
         return function cleanupSocket() {
             socket.disconnect();
         }
-    })
+    }, [id])
 
     return (
         <main>
@@ -32,7 +33,7 @@ export function App() {
                     : (<Switch>
                         <Route
                             exact path="/:id/teams/"
-                            render={({ match }) => <TeamEntry id={match.params.id} data={tournamentData!} />}
+                            render={({ match }) => <TeamEntry id={match.params.id} data={data} />}
                         />
                         <Route><h1>404</h1></Route>
 
