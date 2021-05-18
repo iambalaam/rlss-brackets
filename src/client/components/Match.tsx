@@ -17,7 +17,25 @@ export interface MatchProps {
     aScores: MaybeNumber[],
     bScores: MaybeNumber[],
     bestOf: number,
-    gameNumber: MaybeNumber;
+    gameNumber: number;
+}
+
+export function getWinner(match: MatchProps): (Team | undefined) {
+    if (match.gameNumber === -1) return undefined;
+    if (match.gameNumber < match.bestOf / 2) return undefined;
+
+    let aWins = 0;
+    let bWins = 0;
+    for (let game = 0; game < match.gameNumber; game++) {
+        if (match.aScores[game]! > match.bScores[game]!) {
+            aWins++;
+        } else {
+            bWins++;
+        }
+    }
+    if (aWins > match.bestOf / 2) return match.aTeam;
+    if (bWins > match.bestOf / 2) return match.bTeam;
+    return undefined;
 }
 
 export function Match(props: MatchProps) {

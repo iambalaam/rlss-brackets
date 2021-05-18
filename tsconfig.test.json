@@ -1,0 +1,20 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "jsx": "react",
+        "lib": [
+            "ES2015",
+            "DOM",
+        ],
+        "types": [
+            "@types/webpack-env",
+            "../../@types",
+            "jest"
+        ]
+    },
+    "include": [
+        "../",
+        "./**.*.test,ts",
+        "./**.*.test,tsx",
+    ]
+}
