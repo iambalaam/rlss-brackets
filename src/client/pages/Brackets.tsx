@@ -2,12 +2,13 @@ import * as React from 'react';
 import { TournamentState } from '../../../@types';
 import { Match, MatchProps } from '../components/Match';
 
-export function Brackets(props: { data: TournamentState }) {
+export function Brackets(props: { data: Partial<TournamentState> }) {
     const { data } = props;
-    const nTeams = Math.pow(2, Math.ceil(Math.log2(data.teams.length)));
+    const playerTeams = data.teams || [{}];
+    const nTeams = Math.pow(2, Math.ceil(Math.log2(playerTeams.length)));
 
     // Fill nTeams with missing empty teams (byes)
-    const teams = [...data.teams, ...Array(nTeams - data.teams.length).fill({})];
+    const teams = [...playerTeams, ...Array(nTeams - playerTeams.length).fill({})];
 
     const firstMatches: MatchProps[] = [];
     for (let a = 0; a < nTeams; a += 2) {

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { GithubPicker } from 'react-color';
 import { OnChangeHandler } from 'react-color/lib/components/common/ColorWrap';
-import { TeamInfo, TournamentState } from '../../../@types';
+import { MaybeTeam, TeamInfo, TournamentState } from '../../../@types';
 import './TeamEntry.css';
 
 
@@ -24,9 +24,6 @@ function RocketLeaguePicker({ onChange }: { onChange: OnChangeHandler }) {
         />
     )
 }
-
-interface EmptyTeam { };
-export type MaybeTeam = TeamInfo | EmptyTeam;
 
 function TeamSetup(props: { team: MaybeTeam, onChange: (team: TeamInfo) => void, deleteTeam: () => void }) {
     const team: TeamInfo = {
@@ -84,26 +81,15 @@ function TeamSetup(props: { team: MaybeTeam, onChange: (team: TeamInfo) => void,
     )
 }
 
-export function TeamEntry({ id, data }: { id: string, data: TournamentState }) {
-    const [teams, setTeams] = useState<(MaybeTeam)[]>((data && data.teams) || [{}]);
+export interface TeamEntryProps {
+    id: string;
+    data: Partial<TournamentState>;
+    updateTeams: (teams: MaybeTeam[]) => void;
+}
 
-    function updateTeams(teams: MaybeTeam[]) {
-        window.socket.emit('update-tournament', id, { teams });
-        setTeams(teams);
-    }
-
-    function teamsHandler(dataId: string, data: TournamentState) {
-        if (dataId === id) {
-            setTeams(data.teams);
-        }
-    }
-    useEffect(function setupSocket() {
-        window.socket.on('update-tournament', teamsHandler)
-        return function cleanupSocket() {
-            window.socket.off('update-tournament', teamsHandler);
-        }
-    })
-
+export function TeamEntry(props: TeamEntryProps) {
+    const { id, data, updateTeams } = props;
+    const teams = data.teams || [{}];
     return (
         <div>
             <h1>Team Entry: {id}</h1>

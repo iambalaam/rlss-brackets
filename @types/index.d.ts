@@ -1,7 +1,8 @@
-import { Socket } from "socket.io";
+import { Socket } from "socket.io-client";
+import { MaybeTeam } from "../src/client/pages/TeamEntry";
 
 export interface TournamentState {
-    teams: TeamInfo[]
+    teams: MaybeTeam[]
 }
 
 export interface TeamInfo {
@@ -12,7 +13,9 @@ export interface TeamInfo {
     primaryColor: string;
     secondaryColor: string;
 }
+interface EmptyTeam { };
+export type MaybeTeam = TeamInfo | EmptyTeam;
 
 declare global {
-    interface Window { socket: Socket; }
+    interface Window { socket: Socket }
 }
