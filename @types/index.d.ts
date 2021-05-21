@@ -1,8 +1,11 @@
 import { Socket } from "socket.io-client";
+import { MatchProps } from "../src/client/components/Match";
 import { MaybeTeam } from "../src/client/pages/TeamEntry";
 
 export interface TournamentState {
-    teams: MaybeTeam[]
+    teams: MaybeTeam[];
+    matches: MatchProps[];
+    currentMatch: number;
 }
 
 export interface TeamInfo {
